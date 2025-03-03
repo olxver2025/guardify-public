@@ -53,11 +53,13 @@
       box-sizing: border-box;
     }
     body {
-      background-color: var(--bg-color);
+      /* Use your existing transitions and font settings, then add the gradient: */
+      background: linear-gradient(to top, #584ac8 0%, transparent 50%), var(--bg-color);
       color: var(--text-color);
       font-family: "Poppins", sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
+
     a {
       color: var(--link-color);
       text-decoration: none;
