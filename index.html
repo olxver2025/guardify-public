@@ -53,12 +53,32 @@
       box-sizing: border-box;
     }
     body {
-      /* Use your existing transitions and font settings, then add the gradient: */
-      background: linear-gradient(to top, #584ac8 0%, transparent 50%), var(--bg-color);
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
       color: var(--text-color);
       font-family: "Poppins", sans-serif;
       transition: background-color 0.3s, color 0.3s;
+      /* ... any other styling ... */
     }
+    
+    /* Pseudo-element creates a subtle gradient at the bottom */
+    body::after {
+      content: "";
+      position: fixed;       /* stays pinned to the bottom */
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30vh;          /* how tall you want the gradient to reach */
+      pointer-events: none;  /* let clicks pass through */
+      z-index: -1;           /* sit behind page content */
+      background: linear-gradient(
+        to top,
+        #584ac8 0%,      /* purple at the bottom */
+        rgba(88,74,200,0) 100%  /* transparent at the top */
+      );
+    }
+
 
     a {
       color: var(--link-color);
