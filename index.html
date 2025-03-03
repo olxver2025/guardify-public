@@ -2,126 +2,193 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guardify - AI powered moderation bot for Discord</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guardify - AI Moderation Bot</title>
+
+  <!-- 1) Custom Font Face for Brolink (for the "Guardify" text only) -->
   <style>
+    @font-face {
+      font-family: 'Brolink';
+      src: url('Brolink.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <!-- 2) Google Fonts for the rest of the text (e.g., Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* Base light-mode color variables */
     :root {
       --bg-color: #ffffff;
       --text-color: #333333;
+      --nav-bg: #f5f5f5;
+      --nav-text-color: #333333;
       --link-color: #007BFF;
       --button-bg: #007BFF;
       --button-text: #ffffff;
     }
-    /* Dark mode variables */
-    .dark {
+
+    /* Dark-mode overrides */
+    body.dark {
       --bg-color: #121212;
       --text-color: #e0e0e0;
+      --nav-bg: #1f1f1f;
+      --nav-text-color: #e0e0e0;
       --link-color: #66aaff;
       --button-bg: #1a73e8;
       --button-text: #ffffff;
     }
+
+    /* Global resets */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: "Poppins", sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    header {
-      margin-bottom: 2rem;
-    }
-    header img {
-      width: 150px;
-      height: auto;
-    }
-    h1 {
-      margin: 1rem 0;
-    }
-    p {
-      font-size: 1.1rem;
-    }
-    button {
-      background-color: var(--button-bg);
-      color: var(--button-text);
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      margin: 1rem;
-      transition: opacity 0.3s;
-    }
-    button:hover {
-      opacity: 0.9;
-    }
-    .footer-links {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-    }
-    .footer-links a {
+    a {
       color: var(--link-color);
       text-decoration: none;
-      margin: 0 0.5rem;
     }
-    .footer-links a:hover {
+    a:hover {
       text-decoration: underline;
     }
-    /* Toggle switch for dark mode */
-    .toggle-switch {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
+
+    /* Navigation Bar */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--nav-bg);
+      color: var(--nav-text-color);
+      padding: 0.75rem 1.5rem;
     }
-    .toggle-switch input[type="checkbox"] {
-      display: none;
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
-    .toggle-switch label {
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .nav-links a {
+      margin-left: 1rem;
+      font-weight: 500;
+    }
+
+    /* Lightbulb toggle button */
+    .lightbulb-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+    }
+    .lightbulb-icon {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      transition: opacity 0.3s;
+    }
+    .lightbulb-icon:hover {
+      opacity: 0.8;
+    }
+
+    /* Hero section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .hero-logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .guardify-title {
+      font-family: 'Brolink', sans-serif; /* Use the custom Brolink font only here */
+      font-size: 3rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .add-guardify-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
       background-color: var(--button-bg);
       color: var(--button-text);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      user-select: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+    .add-guardify-btn:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
+
 <body>
-  <!-- Dark mode toggle switch -->
-  <div class="toggle-switch">
-    <input type="checkbox" id="theme-toggle" />
-    <label for="theme-toggle">Dark Mode</label>
-  </div>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-left">
+      <!-- Logo -->
+      <img src="guardifylogo512.png" alt="Guardify Logo" class="logo" />
+      <!-- TOS & Privacy links -->
+      <div class="nav-links">
+        <a href="tos.html" target="_blank">TOS</a>
+        <a href="privacy.html" target="_blank">Privacy Policy</a>
+      </div>
+    </div>
 
-  <div class="container">
-    <header>
-      <img src="guard.png" alt="Guardify Logo" />
-      <h1>Guardify</h1>
-      <p>Your AI-powered Discord moderation bot</p>
-    </header>
+    <!-- Lightbulb icon for theme toggle -->
+    <div class="nav-right">
+      <button class="lightbulb-toggle" id="themeToggle">
+        <img src="bulb.png" alt="Toggle Light/Dark Mode" class="lightbulb-icon" />
+      </button>
+    </div>
+  </nav>
 
-    <main>
-      <a href="https://discord.com/oauth2/authorize?client_id=1345436894783082537&permissions=8&integration_type=0&scope=applications.commands+bot" target="_blank">
-        <button>Add Guardify</button>
-      </a>
-    </main>
-
-    <footer class="footer-links">
-      <a href="tos.html" target="_blank">Terms of Service</a> |
-      <a href="privacy.html" target="_blank">Privacy Policy</a>
-    </footer>
-  </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Large logo in hero -->
+    <img src="guard" alt="Guardify Shield Logo" class="hero-logo" />
+    <h1 class="guardify-title">Guardify</h1>
+    <p>Your AI-powered Discord moderation bot</p>
+    <a
+      href="https://discord.com/api/oauth2/authorize?client_id=YOUR_BOT_CLIENT_ID&permissions=8&scope=bot%20applications.commands"
+      target="_blank"
+      class="add-guardify-btn"
+    >
+      Add Guardify
+    </a>
+  </section>
 
   <script>
-    const toggleSwitch = document.getElementById('theme-toggle');
-    toggleSwitch.addEventListener('change', function() {
-      document.body.classList.toggle('dark', this.checked);
+    // Toggle dark/light mode
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
     });
   </script>
 </body>
