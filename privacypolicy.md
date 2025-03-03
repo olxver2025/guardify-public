@@ -31,6 +31,7 @@ Moderation and logging data is retained for as long as necessary to fulfill the 
 - Access: You have the right to access the information we hold about you.
 - Correction: If you believe any information is inaccurate, please contact the developer to request a correction.
 - Deletion: Requests for deletion of your data may be considered, subject to any legal obligations to retain certain records.
+  
 # 8. Changes to This Privacy Policy
 We may update this Privacy Policy from time to time. We will notify you of any changes by updating the “Last Updated” date at the top of this document. Your continued use of the Bot after such changes will constitute your acceptance of the revised policy.
 
