@@ -1,44 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guardify Legal Documents</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guardify - AI powered moderation bot for Discord</title>
   <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --link-color: #007BFF;
+      --button-bg: #007BFF;
+      --button-text: #ffffff;
+    }
+    /* Dark mode variables */
+    .dark {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --link-color: #66aaff;
+      --button-bg: #1a73e8;
+      --button-text: #ffffff;
+    }
     body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      color: #333;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
       text-align: center;
     }
+    header {
+      margin-bottom: 2rem;
+    }
+    header img {
+      width: 150px;
+      height: auto;
+    }
     h1 {
-      margin-bottom: 1.5rem;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
       margin: 1rem 0;
     }
-    a {
-      text-decoration: none;
-      color: #007BFF;
-      font-size: 1.2rem;
+    p {
+      font-size: 1.1rem;
     }
-    a:hover {
+    button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      margin: 1rem;
+      transition: opacity 0.3s;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .footer-links {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    .footer-links a {
+      color: var(--link-color);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    .footer-links a:hover {
       text-decoration: underline;
+    }
+    /* Toggle switch for dark mode */
+    .toggle-switch {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+    }
+    .toggle-switch input[type="checkbox"] {
+      display: none;
+    }
+    .toggle-switch label {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      user-select: none;
     }
   </style>
 </head>
 <body>
-  <h1>Guardify Legal Documents</h1>
-  <ul>
-    <li><a href="tos.html" target="_blank">Terms of Service</a></li>
-    <li><a href="privacy.html" target="_blank">Privacy Policy</a></li>
-  </ul>
+  <!-- Dark mode toggle switch -->
+  <div class="toggle-switch">
+    <input type="checkbox" id="theme-toggle" />
+    <label for="theme-toggle">Dark Mode</label>
+  </div>
+
+  <div class="container">
+    <header>
+      <img src="guard.png" alt="Guardify Logo" />
+      <h1>Guardify</h1>
+      <p>Your AI-powered Discord moderation bot</p>
+    </header>
+
+    <main>
+      <a href="https://discord.com/oauth2/authorize?client_id=1345436894783082537&permissions=8&integration_type=0&scope=applications.commands+bot" target="_blank">
+        <button>Add Guardify</button>
+      </a>
+    </main>
+
+    <footer class="footer-links">
+      <a href="tos.html" target="_blank">Terms of Service</a> |
+      <a href="privacy.html" target="_blank">Privacy Policy</a>
+    </footer>
+  </div>
+
+  <script>
+    const toggleSwitch = document.getElementById('theme-toggle');
+    toggleSwitch.addEventListener('change', function() {
+      document.body.classList.toggle('dark', this.checked);
+    });
+  </script>
 </body>
 </html>
