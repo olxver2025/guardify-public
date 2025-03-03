@@ -7,14 +7,21 @@ By inviting, installing, or using Guardify (the “Bot”), you (as a server adm
 Guardify is an AI-powered auto moderation tool designed to assist Discord server administrators by scanning messages for policy violations, issuing warnings, logging moderation actions, and managing user infractions. The Bot uses external services (such as OpenAI’s moderation API) to help identify harmful content.
 # 3. User Obligations
 - Proper Use: You agree to use the Bot only for lawful purposes and in accordance with Discord’s Terms of Service.
+  
 - Server Responsibility: As a server administrator, you are responsible for informing your server members that moderation measures (including message scanning and logging) are in place.
+  
 - No Misuse: You will not modify, reverse-engineer, or otherwise misuse the Bot beyond its intended moderation function.
+  
 # 4. License and Intellectual Property
 - Grant of License: The developer grants you a limited, non-exclusive, non-transferable license to use the Bot for moderation purposes on your Discord server(s).
+  
 - Ownership: Guardify’s code, branding, and related materials are the intellectual property of its developer. You may not claim ownership or resell any part of the Bot.
+  
 # 5. Disclaimers and Limitation of Liability
 - "As Is" Service: The Bot is provided “as is” without any warranties—express or implied. The developer does not guarantee uninterrupted service or accuracy of moderation decisions.
+  
 - Limitation of Liability: In no event shall the developer be liable for any indirect, incidental, or consequential damages arising from the use or inability to use the Bot, even if advised of the possibility of such damages.
+  
 # 6. Modifications
 The developer reserves the right to modify these Terms of Service at any time. Continued use of the Bot after any changes constitutes your acceptance of the revised terms.
 # 7. Termination
