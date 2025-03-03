@@ -19,6 +19,7 @@ This Privacy Policy explains how Guardify (“the Bot”) collects, uses, and sa
 - Within Discord: Information is used internally for moderation and is accessible only to server administrators and authorized personnel.
 - Third Parties: We do not sell or rent your personal information. Data may be shared with third-party services (like OpenAI) only as necessary for the moderation process.
 - Legal Requests: We may disclose your information if required by law or in response to legal requests.
+  
 # 5. Data Security
 We take reasonable measures to protect your information from unauthorized access, alteration, or disclosure. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
 Message content is only sent for scanning by AI and is never stored.
