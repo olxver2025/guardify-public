@@ -53,16 +53,14 @@
       box-sizing: border-box;
     }
     body {
-      margin: 0;
-      padding: 0;
       background-color: var(--bg-color);
       color: var(--text-color);
       font-family: "Poppins", sans-serif;
       transition: background-color 0.3s, color 0.3s;
-      /* ... any other styling ... */
+      min-height: 100vh;
     }
     
-    /* Pseudo-element creates a subtle gradient at the bottom */
+    /* Subtle bottom gradient */
     body::after {
       content: "";
       position: fixed;       /* stays pinned to the bottom */
@@ -71,18 +69,18 @@
       width: 100%;
       height: 30vh;          /* how tall you want the gradient to reach */
       pointer-events: none;  /* let clicks pass through */
-      z-index: -1;           /* sit behind page content */
+      z-index: -1;           /* behind page content */
       background: linear-gradient(
         to top,
-        #584ac8 0%,      /* purple at the bottom */
-        rgba(88,74,200,0) 100%  /* transparent at the top */
+        #584ac8 0%,           /* purple at bottom */
+        rgba(88,74,200,0) 100% /* transparent at top */
       );
     }
-
 
     a {
       color: var(--link-color);
       text-decoration: none;
+      font-weight: 500;
     }
     a:hover {
       text-decoration: underline;
@@ -98,22 +96,23 @@
       padding: 0.75rem 1.5rem;
     }
     .nav-left,
+    .nav-center,
     .nav-right {
       display: flex;
       align-items: center;
       gap: 1.5rem;
+    }
+    .nav-center {
+      flex: 1; /* So it can expand and push the nav-right to the far right */
+      justify-content: center;
     }
     .logo {
       width: 40px;
       height: 40px;
       object-fit: contain;
     }
-    .nav-links a {
-      margin-left: 1rem;
-      font-weight: 500;
-    }
 
-    /* Lightbulb toggle button */
+    /* Lightbulb toggle */
     .lightbulb-toggle {
       background: none;
       border: none;
@@ -131,41 +130,22 @@
       opacity: 0.8;
     }
 
-    /* Hero section */
+    /* Hero Section */
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
       padding: 3rem 1rem;
     }
-    .hero-logo {
-      width: 150px;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-    .guardify-title {
-      font-family: 'Brolink', sans-serif; 
+    .hero-title {
+      font-family: 'Brolink', sans-serif;
       font-size: 3rem;
-      font-weight: normal;
       margin-bottom: 1rem;
     }
-    .hero p {
+    .hero-subtitle {
       font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    .add-guardify-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: var(--button-bg);
-      color: var(--button-text);
-      border-radius: 4px;
-      font-weight: 600;
-      transition: opacity 0.3s;
-    }
-    .add-guardify-btn:hover {
-      opacity: 0.9;
+      font-weight: 400;
     }
   </style>
 </head>
@@ -173,37 +153,33 @@
 <body>
   <!-- Navigation Bar -->
   <nav>
+    <!-- Left: Logo -->
     <div class="nav-left">
-      <!-- Logo -->
       <img src="guard.png" alt="Guardify Logo" class="logo" />
-      <!-- TOS & Privacy links -->
-      <div class="nav-links">
-        <a href="tos.html" target="_blank">TOS</a>
-        <a href="privacy.html" target="_blank">Privacy Policy</a>
-        <a href="https://guardify-backend.onrender.com/auth/discord" target="_blank">Login with Discord</a>
-
-      </div>
     </div>
 
-    <!-- Lightbulb icon for theme toggle --> 
+    <!-- Center: TOS, Privacy, Login -->
+    <div class="nav-center">
+      <a href="tos.html" target="_blank">TOS</a>
+      <a href="privacy.html" target="_blank">Privacy Policy</a>
+      <a href="https://guardify-backend.onrender.com/auth/discord" target="_blank">
+        Login with Discord
+      </a>
+    </div>
+
+    <!-- Right: Add Guardify + optional Lightbulb toggle -->
     <div class="nav-right">
+      <a href="invite.html" target="_blank">Add Guardify</a>
       <button class="lightbulb-toggle" id="themeToggle">
         <img src="bulb.png" alt="Toggle Light/Dark Mode" class="lightbulb-icon" />
       </button>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <img src="guard.png" alt="Guardify Shield Logo" class="hero-logo" />
-    <h1 class="guardify-title">Guardify</h1>
-    <p>Your AI-powered Discord moderation bot</p>
-    <a
-      href="invite.html"
-      target="_blank"
-      class="add-guardify-btn"
-    >
-      Add Guardify
-    </a>
+    <h1 class="hero-title">Guardify</h1>
+    <p class="hero-subtitle">Your AI-powered Discord moderation bot</p>
   </section>
 
   <script>
