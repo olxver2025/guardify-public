@@ -134,32 +134,31 @@
     .hero {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 3rem 1rem;
+      align-items: flex-start;   /* Move content to the left */
+      text-align: left;          /* Left-align text */
+      padding: 3rem 2rem;        /* Add some left padding */
     }
     .hero-title {
       font-family: 'Brolink', sans-serif;
       font-size: 3rem;
       margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--text-color); /* Underline below "Guardify" */
     }
     .hero-subtitle {
       font-size: 1.2rem;
       font-weight: 400;
+      margin-bottom: 0; /* Or adjust as needed */
     }
   </style>
 </head>
 
-<body>
+<!-- Default to dark mode, remove class="dark" if you want light by default -->
+<body class="dark">
   <!-- Navigation Bar -->
   <nav>
-    <!-- Left: Logo -->
     <div class="nav-left">
       <img src="guard.png" alt="Guardify Logo" class="logo" />
-    </div>
-
-    <!-- Center: TOS, Privacy, Login -->
-    <div class="nav-center">
       <a href="tos.html" target="_blank">TOS</a>
       <a href="privacy.html" target="_blank">Privacy Policy</a>
       <a href="https://guardify-backend.onrender.com/auth/discord" target="_blank">
