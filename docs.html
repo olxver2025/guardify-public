@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guardify Documentation</title>
+
+  <!-- 1) Custom Font Face for Brolink (used for the main title) -->
+  <style>
+    @font-face {
+      font-family: 'Brolink';
+      src: url('Brolink.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <!-- 2) Google Fonts for the rest of the text (Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Base light-mode color variables */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --nav-bg: #f5f5f5;
+      --nav-text-color: #333333;
+      --link-color: #007BFF;
+      --button-bg: #007BFF;
+      --button-text: #ffffff;
+    }
+
+    /* Dark-mode overrides */
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --nav-bg: #1f1f1f;
+      --nav-text-color: #e0e0e0;
+      --link-color: #66aaff;
+      --button-bg: #1a73e8;
+      --button-text: #ffffff;
+    }
+
+    /* Global resets */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Poppins", sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Navigation Bar */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--nav-bg);
+      color: var(--nav-text-color);
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-left,
+    .nav-center,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-left a {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero-title {
+      font-family: 'Brolink', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--text-color);
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    /* Documentation Sections */
+    .doc-section {
+      padding: 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+    .doc-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .doc-section p,
+    .doc-section li {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .doc-section ul {
+      list-style: disc;
+      margin-left: 2rem;
+    }
+    details {
+      margin: 1rem 0;
+    }
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.5rem;
+      background-color: var(--nav-bg);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    /* Lightbulb toggle */
+    .lightbulb-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+    }
+    .lightbulb-icon {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      transition: opacity 0.3s;
+    }
+    .lightbulb-icon:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body class="dark">
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-left">
+      <!-- Logo as a button linking to index.html -->
+      <a href="index.html"><img src="guard.png" alt="Logo" class="logo" /></a>
+      <a href="tos.html">TOS</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="docs.html">Documentation</a>
+      <a href="https://guardify-backend.onrender.com/auth/discord">
+        Login with Discord
+      </a>
+    </div>
+    <div class="nav-right">
+        <a href="invite.html" target="_blank">Add Guardify</a>
+        <button class="lightbulb-toggle" id="themeToggle">
+          <img src="bulb.png" alt="Toggle Light/Dark Mode" class="lightbulb-icon" />
+        </button>
+      </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">Documentation</h1>
+  </section>
+
+  <!-- Documentation Content -->
+  <section class="doc-section">
+    <h2>Overview</h2>
+    <p>
+      Guardify is an AI-powered moderation bot designed for Discord servers.
+    </p>
+  </section>
+
+  <section class="doc-section">
+    <h2>Violation Categories</h2>
+    <p>
+      The bot monitors various types of content violations. The main categories include:
+    </p>
+    <ul>
+      <li><strong>Harassment:</strong> Abusive language and behavior.</li>
+      <li><strong>Harassment/Threatening:</strong> Aggressive or threatening language.</li>
+      <li><strong>Hate:</strong> Hate speech and discriminatory content.</li>
+      <li><strong>Hate/Threatening:</strong> Hate speech with threats.</li>
+      <li><strong>Illicit:</strong> Content related to illegal activities.</li>
+      <li><strong>Illicit/Violent:</strong> Violent content tied to illicit activities.</li>
+      <li><strong>Self-harm:</strong> Content related to self-harm or suicidal ideation.</li>
+      <li><strong>Self-harm/Intent:</strong> Expressions of intent to self-harm.</li>
+      <li><strong>Self-harm/Instructions:</strong> Guidance or instructions to self-harm.</li>
+      <li><strong>Sexual:</strong> Explicit sexual content or discussions.</li>
+      <li><strong>Sexual/Minors:</strong> Sexual content involving minors.</li>
+      <li><strong>Violence:</strong> General violent content.</li>
+      <li><strong>Violence/Graphic:</strong> Graphically violent content.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <h2>Commands</h2>
+    <p>
+      Guardify provides several slash commands for moderation and configuration:
+    </p>
+    <ul>
+      <li><strong>/guard lookup</strong>: Lookup a user's moderation logs.</li>
+      <li><strong>/guard strike</strong>: Issue a strike to a user, triggering warnings and disciplinary actions.</li>
+      <li><strong>/guard purge</strong>: Delete a specified number of messages (up to 100) from a channel.</li>
+      <li><strong>/guard timeout</strong>: Temporarily timeout a user for a set duration.</li>
+      <li><strong>/guard panel</strong>: Open an interactive settings panel for detailed configuration.</li>
+      <li><strong>/guard am automod setup</strong>: Run an automated setup for AutoMod, including role and channel configuration.</li>
+      <li><strong>/guard am scan</strong>: Scan recent messages in a channel for violations and delete flagged messages.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <h2>/guard panel - Settings Panel</h2>
+    <p>
+      The <strong>/guard panel</strong> command opens a multi-page interactive settings panel.
+      This panel allows administrators to configure various aspects of the bot’s behavior.
+    </p>
+    <details>
+      <summary>Panel Settings Details (Click to Expand)</summary>
+      <h3>Page 1: Automod Settings</h3>
+      <ul>
+        <li><strong>Toggle AutoMod:</strong> Enable or disable the entire AutoMod system.</li>
+        <li><strong>Set Bypass Roles:</strong> Specify roles that bypass moderation actions.</li>
+      </ul>
+      <h3>Page 2: Message Logging Settings</h3>
+      <ul>
+        <li><strong>Toggle Message Deletion Logging:</strong> Enable or disable logging when messages are deleted.</li>
+        <li><strong>Toggle Message Editing Logging:</strong> Enable or disable logging of edited messages.</li>
+      </ul>
+      <h3>Page 3: Member Logs Settings</h3>
+      <ul>
+        <li><strong>Toggle Member Join Logging:</strong> Log events when new members join.</li>
+        <li><strong>Toggle Member Leave Logging:</strong> Log events when members leave.</li>
+      </ul>
+      <h3>Page 4: Violation Categories Configuration</h3>
+      <ul>
+        <li>
+          Toggle individual violation categories on or off to control which types of content are moderated.
+        </li>
+      </ul>
+      <h3>Page 5: Advanced Settings</h3>
+      <ul>
+        <li><strong>Toggle Auto-Mute:</strong> Enable or disable auto-muting when violation thresholds are met.</li>
+        <li><strong>Toggle Use Mute Role:</strong> Choose to use a predefined mute role for auto-muting, instead of using the default Discord time-out feature.</li>
+        <li><strong>Set Mute Role:</strong> Specify the role that should be applied for muting.</li>
+        <li><strong>Toggle Text Moderation:</strong> Enable or disable moderation for textual content.</li>
+        <li><strong>Toggle Image Moderation:</strong> Enable or disable moderation for images.</li>
+        <li><strong>Set Warning Message:</strong> Customize the warning message sent to users when their content is removed.</li>
+        <li><strong>Set Auto-Mute Duration:</strong> Define the duration of the mute when auto-mute is activated.</li>
+        <li><strong>Toggle Log Timeout:</strong> Enable or disable logging for timeout actions.</li>
+      </ul>
+    </details>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ by olxver2025 - https://github.com/olxver2025</p>
+  </footer>
+
+  <script>
+    // Toggle dark/light mode
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+  </script>
+</body>
+</html>

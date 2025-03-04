@@ -63,17 +63,17 @@
     /* Subtle bottom gradient */
     body::after {
       content: "";
-      position: fixed;       /* stays pinned to the bottom */
+      position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 30vh;          /* how tall you want the gradient to reach */
-      pointer-events: none;  /* let clicks pass through */
-      z-index: -1;           /* behind page content */
+      height: 40vh;
+      pointer-events: none;
+      z-index: -1;
       background: linear-gradient(
         to top,
-        #584ac8 0%,           /* purple at bottom */
-        rgba(88,74,200,0) 100% /* transparent at top */
+        #584ac8 0%,
+        rgba(88,74,200,0) 100%
       );
     }
 
@@ -103,7 +103,7 @@
       gap: 1.5rem;
     }
     .nav-center {
-      flex: 1; /* So it can expand and push the nav-right to the far right */
+      flex: 1;
       justify-content: center;
     }
     .logo {
@@ -134,39 +134,121 @@
     .hero {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;   /* Move content to the left */
-      text-align: left;          /* Left-align text */
-      padding: 3rem 2rem;        /* Add some left padding */
+      align-items: flex-start;
+      text-align: left;
+      padding: 3rem 2rem;
     }
     .hero-title {
       font-family: 'Brolink', sans-serif;
       font-size: 3rem;
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--text-color); /* Underline below "Guardify" */
+      border-bottom: 2px solid var(--text-color);
     }
     .hero-subtitle {
       font-size: 1.2rem;
       font-weight: 400;
-      margin-bottom: 0; /* Or adjust as needed */
+      margin-bottom: 0;
+    }
+
+    /* Chat Interface Section */
+    .chat-interface {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4rem auto;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .chat-box {
+      position: relative;
+      display: flex;
+      width: 100%;
+      border: 2px solid #584ac8;  /* Normal visible border */
+      border-radius: 8px;
+      overflow: visible;          /* So the glow can appear outside */
+      margin-bottom: 1rem;
+    }
+
+    .chat-box input {
+      flex: 1;
+      padding: 1rem;
+      background: transparent;
+      color: var(--text-color);
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .chat-box button {
+      background-color: #584ac8;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      border-radius: 0;
+    }
+    .chat-box button:hover {
+      background-color: #6954d0;
+    }
+
+    /* Purple Glow Overlay (for loading animation) */
+    .border-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      border-radius: 8px;
+      display: none; /* Hidden by default */
+      z-index: 9999; /* On top */
+      animation: pulse 2s infinite;
+    }
+
+    /* Box-shadow for a bright glow */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 10px 3px rgba(88,74,200,0.5),
+                    inset 0 0 10px 3px rgba(88,74,200,0.5);
+      }
+      50% {
+        box-shadow: 0 0 20px 6px rgba(88,74,200,0.8),
+                    inset 0 0 20px 6px rgba(88,74,200,0.8);
+      }
+      100% {
+        box-shadow: 0 0 10px 3px rgba(88,74,200,0.5),
+                    inset 0 0 10px 3px rgba(88,74,200,0.5);
+      }
+    }
+
+    /* Placeholder response container */
+    .response {
+      width: 100%;
+      min-height: 50px;
+      padding: 1rem;
+      border: 2px solid #584ac8;
+      border-radius: 8px;
+      display: none; /* Hidden until we show a response */
     }
   </style>
 </head>
 
-<!-- Default to dark mode, remove class="dark" if you want light by default -->
 <body class="dark">
   <!-- Navigation Bar -->
   <nav>
     <div class="nav-left">
-      <img src="guard.png" alt="Guardify Logo" class="logo" />
-      <a href="tos.html" target="_blank">TOS</a>
-      <a href="privacy.html" target="_blank">Privacy Policy</a>
+      <a href="index.html"><img src="guard.png" alt="Logo" class="logo" /></a>
+      <a href="tos.html">TOS</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="docs.html">Documentation</a>
       <a href="https://guardify-backend.onrender.com/auth/discord" target="_blank">
         Login with Discord
       </a>
     </div>
-
-    <!-- Right: Add Guardify + optional Lightbulb toggle -->
     <div class="nav-right">
       <a href="invite.html" target="_blank">Add Guardify</a>
       <button class="lightbulb-toggle" id="themeToggle">
@@ -181,12 +263,67 @@
     <p class="hero-subtitle">Your AI-powered Discord moderation bot</p>
   </section>
 
+  <!-- Chat Interface Section -->
+  <section class="chat-interface">
+    <div class="chat-box" id="chatBox">
+      <input
+        type="text"
+        placeholder="What can I help with?"
+        id="userInput"
+      />
+      <button id="sendBtn">Send</button>
+      <!-- The animated border overlay -->
+      <div class="border-animation" id="borderAnimation"></div>
+    </div>
+    <!-- Placeholder for AI response -->
+    <div class="response" id="response"></div>
+  </section>
+
   <script>
     // Toggle dark/light mode
     const themeToggleBtn = document.getElementById('themeToggle');
     themeToggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
     });
+
+    // Simple chat functionality with a "loading" animation
+    const sendBtn = document.getElementById("sendBtn");
+    const userInput = document.getElementById("userInput");
+    const borderAnimation = document.getElementById("borderAnimation");
+    const response = document.getElementById("response");
+    const chatBox = document.getElementById("chatBox");
+
+    sendBtn.addEventListener("click", handleSend);
+    userInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") handleSend();
+    });
+
+    function handleSend() {
+      const question = userInput.value.trim();
+      if (!question) return;
+
+      // Remove the normal border so the glow is more visible
+      chatBox.style.border = "2px solid transparent";
+
+      // Show purple glow animation to simulate "loading"
+      borderAnimation.style.display = "block";
+
+      // Clear previous response
+      response.style.display = "none";
+      response.innerText = "";
+
+      // Simulate a 2-second "AI processing" time
+      setTimeout(() => {
+        // Hide the glow animation
+        borderAnimation.style.display = "none";
+        // Restore the normal border
+        chatBox.style.border = "2px solid #584ac8";
+
+        // Show a placeholder response
+        response.style.display = "block";
+        response.innerText = "This is a placeholder AI response for: " + question;
+      }, 2000);
+    }
   </script>
 </body>
 </html>
