@@ -245,9 +245,6 @@
       <a href="tos.html">TOS</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="docs.html">Documentation</a>
-      <a href="https://guardify-backend.onrender.com/auth/discord" target="_blank">
-        Login with Discord
-      </a>
     </div>
     <div class="nav-right">
       <a href="invite.html" target="_blank">Add Guardify</a>
@@ -262,68 +259,5 @@
     <h1 class="hero-title">Guardify</h1>
     <p class="hero-subtitle">Your AI-powered Discord moderation bot</p>
   </section>
-
-  <!-- Chat Interface Section -->
-  <section class="chat-interface">
-    <div class="chat-box" id="chatBox">
-      <input
-        type="text"
-        placeholder="What can I help with?"
-        id="userInput"
-      />
-      <button id="sendBtn">Send</button>
-      <!-- The animated border overlay -->
-      <div class="border-animation" id="borderAnimation"></div>
-    </div>
-    <!-- Placeholder for AI response -->
-    <div class="response" id="response"></div>
-  </section>
-
-  <script>
-    // Toggle dark/light mode
-    const themeToggleBtn = document.getElementById('themeToggle');
-    themeToggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
-
-    // Simple chat functionality with a "loading" animation
-    const sendBtn = document.getElementById("sendBtn");
-    const userInput = document.getElementById("userInput");
-    const borderAnimation = document.getElementById("borderAnimation");
-    const response = document.getElementById("response");
-    const chatBox = document.getElementById("chatBox");
-
-    sendBtn.addEventListener("click", handleSend);
-    userInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") handleSend();
-    });
-
-    function handleSend() {
-      const question = userInput.value.trim();
-      if (!question) return;
-
-      // Remove the normal border so the glow is more visible
-      chatBox.style.border = "2px solid transparent";
-
-      // Show purple glow animation to simulate "loading"
-      borderAnimation.style.display = "block";
-
-      // Clear previous response
-      response.style.display = "none";
-      response.innerText = "";
-
-      // Simulate a 2-second "AI processing" time
-      setTimeout(() => {
-        // Hide the glow animation
-        borderAnimation.style.display = "none";
-        // Restore the normal border
-        chatBox.style.border = "2px solid #584ac8";
-
-        // Show a placeholder response
-        response.style.display = "block";
-        response.innerText = "This is a placeholder AI response for: " + question;
-      }, 2000);
-    }
-  </script>
 </body>
 </html>
