@@ -5,7 +5,7 @@ This Privacy Policy explains how Guardify (“the Bot”) collects, uses, and sa
 
 # 2. Information We Collect
 - User Identifiers: User IDs, usernames, and profile images as provided by Discord.
-- Message Content: Content of messages that are scanned or logged as part of the moderation process. **Message content isn't and never will be stored on our database.**
+- Message Content: Content of messages that are scanned as part of the moderation process. **Message content isn't and never will be stored on our database.**
 - Moderation Data: Records of strikes, warnings, violations, and other moderation actions stored in our database.
 - Interaction Data: Information related to commands and feedback provided by users.
 
