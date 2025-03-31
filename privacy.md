@@ -1,4 +1,4 @@
-Last Updated: [03/03/2025]
+Last Updated: [31/03/2025]
 
 # 1. Introduction
 This Privacy Policy explains how Guardify (“the Bot”) collects, uses, and safeguards information when used on Discord servers. By using the Bot, you agree to the collection and use of information in accordance with this policy.
